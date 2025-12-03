@@ -24,6 +24,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Build bridge-api jar
+        run: ./gradlew :bridge-api:jar
+
       - name: Build Launcher with Gradle
         run: ./gradlew clean shadowJar
 
