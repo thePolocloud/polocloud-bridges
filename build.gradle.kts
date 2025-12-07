@@ -71,14 +71,21 @@ subprojects {
 
     tasks.withType<PublishToMavenRepository>().configureEach {
         doFirst {
-            val pub = publication
-            println("=== Publishing: ${pub.name} to ${repository.url} ===")
+            val pub = publication as MavenPublication
+            val base = repository.url.toString().removeSuffix("/")
+
+            println("=== Deploy paths for ${pub.artifactId}:${pub.version} ===")
 
             pub.artifacts.forEach { art ->
-                println(" -> File: ${art.file.absolutePath}")
-                println(" -> Filename: ${art.file.name}")
+                val full = listOf(
+                    base,
+                    pub.groupId.replace('.', '/'),
+                    pub.artifactId,
+                    pub.version,
+                    art.file.name
+                ).joinToString("/")
+                println(full)
             }
-
             println("========================================")
         }
     }
