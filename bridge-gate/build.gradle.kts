@@ -1,4 +1,4 @@
 dependencies {
-    implementation(projects.bridgeApi)
+    api(projects.bridgeApi)
     implementation(libs.snake.yaml)
 }
