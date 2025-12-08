@@ -68,27 +68,6 @@ subprojects {
             }
         }
     }
-
-    tasks.withType<PublishToMavenRepository>().configureEach {
-        doFirst {
-            val pub = publication as MavenPublication
-            val base = repository.url.toString().removeSuffix("/")
-
-            println("=== Deploy paths for ${pub.artifactId}:${pub.version} ===")
-
-            pub.artifacts.forEach { art ->
-                val full = listOf(
-                    base,
-                    pub.groupId.replace('.', '/'),
-                    pub.artifactId,
-                    pub.version,
-                    art.file.name
-                ).joinToString("/")
-                println(full)
-            }
-            println("========================================")
-        }
-    }
 }
 
 nexusPublishing {
