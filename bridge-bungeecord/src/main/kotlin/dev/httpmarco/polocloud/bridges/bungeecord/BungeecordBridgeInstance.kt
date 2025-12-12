@@ -1,5 +1,6 @@
 package dev.httpmarco.polocloud.bridges.bungeecord
 
+import dev.httpmarco.polocloud.bridge.api.BridgeActorSupportInstance
 import dev.httpmarco.polocloud.bridge.api.BridgeInstance
 import dev.httpmarco.polocloud.shared.events.definitions.PlayerJoinEvent
 import dev.httpmarco.polocloud.shared.events.definitions.PlayerLeaveEvent
@@ -17,7 +18,7 @@ import net.md_5.bungee.api.plugin.Listener
 import net.md_5.bungee.event.EventHandler
 import java.net.InetSocketAddress
 
-class BungeecordBridgeInstance : BridgeInstance<ServerInfo, ServerInfo>(), Listener {
+class BungeecordBridgeInstance : BridgeActorSupportInstance<ServerInfo, ServerInfo>(BungeecordBridgeActor()), Listener {
 
     init {
         this.processBind()
