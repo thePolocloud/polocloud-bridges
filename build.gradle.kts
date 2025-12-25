@@ -21,7 +21,7 @@ allprojects {
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    if (name != "bridge-api" || name != "bridge-fabric") {
+    if (name != "bridge-api" && name != "bridge-fabric") {
         apply(plugin = "com.gradleup.shadow")
 
         tasks.shadowJar {
@@ -42,6 +42,10 @@ subprojects {
         publications {
             create<MavenPublication>("maven") {
                 from(components["java"])
+
+                artifact(tasks.shadowJar.get()) {
+                    classifier = null
+                }
 
                 pom {
                     description.set("PoloCloud gRPC API with bundled dependencies")
