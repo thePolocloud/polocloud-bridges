@@ -3,7 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
     id("com.gradleup.shadow") version "9.0.0"
-    kotlin("jvm") version "2.2.21"
+    kotlin("jvm") version "2.3.0"
     `maven-publish`
 }
 
