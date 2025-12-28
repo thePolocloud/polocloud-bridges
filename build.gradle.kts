@@ -1,7 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
     id("com.gradleup.shadow") version "9.0.0"
-    kotlin("jvm") version "2.2.21"
+    kotlin("jvm") version "2.3.0"
     `maven-publish`
 }
 
@@ -10,7 +12,6 @@ allprojects {
     version = "3.0.0-pre.7-SNAPSHOT"
 
     repositories {
-        mavenLocal()
         mavenCentral()
         maven {
             name = "polocloud-snapshots"
@@ -22,13 +23,11 @@ allprojects {
 
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
-    if (name != "bridge-api" || name != "bridge-fabric") {
+    if (name != "bridge-api" && name != "bridge-fabric") {
         apply(plugin = "com.gradleup.shadow")
 
         tasks.shadowJar {
             archiveClassifier.set(null)
-
-            mergeServiceFiles()
         }
     }
     apply(plugin = "maven-publish")
@@ -41,10 +40,20 @@ subprojects {
         jvmToolchain(21)
     }
 
+    tasks.withType<ShadowJar>().configureEach {
+        isZip64 = true
+    }
+
     publishing {
         publications {
             create<MavenPublication>("maven") {
-                from(components["java"])
+                if (plugins.hasPlugin("com.gradleup.shadow")) {
+                    artifact(tasks.named("shadowJar")) {
+                        classifier = null
+                    }
+                } else {
+                    from(components["java"])
+                }
 
                 pom {
                     description.set("PoloCloud gRPC API with bundled dependencies")

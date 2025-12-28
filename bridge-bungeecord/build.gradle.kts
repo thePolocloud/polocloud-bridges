@@ -16,7 +16,6 @@ dependencies {
     api(projects.bridgeApi)
     implementation(libs.bstats.bungeecord)
     compileOnly(libs.bungeecord)
-
 }
 
 tasks.withType<ShadowJar> {

@@ -11,7 +11,6 @@ import com.velocitypowered.api.proxy.ProxyServer
 import com.velocitypowered.api.proxy.server.RegisteredServer
 import com.velocitypowered.api.proxy.server.ServerInfo
 import dev.httpmarco.polocloud.bridge.api.BridgeActorSupportInstance
-import dev.httpmarco.polocloud.bridge.api.BridgeInstance
 import dev.httpmarco.polocloud.sdk.java.Polocloud
 import dev.httpmarco.polocloud.shared.events.definitions.PlayerJoinEvent
 import dev.httpmarco.polocloud.shared.events.definitions.PlayerLeaveEvent
@@ -19,8 +18,9 @@ import dev.httpmarco.polocloud.shared.player.PolocloudPlayer
 import dev.httpmarco.polocloud.shared.service.Service
 import org.bstats.velocity.Metrics
 import java.net.InetSocketAddress
-import java.util.Optional
+import java.util.*
 import kotlin.jvm.optionals.getOrNull
+
 
 class VelocityBridge @Inject constructor(
     val proxyServer: ProxyServer,
