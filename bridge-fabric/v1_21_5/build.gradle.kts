@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id("fabric-loom") version "1.11-SNAPSHOT"
+    id("fabric-loom") version "1.14-SNAPSHOT"
 }
 
 val minecraftVersion = "1.21.5"
@@ -23,6 +23,12 @@ dependencies {
 
 loom {
     serverOnlyMinecraftJar()
+    accessWidenerPath.set(file("src/main/resources/polocloud_bridge_1_21_5.accesswidener"))
+
+    mixin {
+        useLegacyMixinAp.set(true) // this brings the refmap back
+        defaultRefmapName.set("v1_21_5-refmap.json")
+    }
 }
 
 tasks.named<RemapJarTask>("remapJar") {
