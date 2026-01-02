@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id("fabric-loom") version "1.11-SNAPSHOT"
+    id("fabric-loom") version "1.14-SNAPSHOT"
 }
 
 val minecraftVersion = "1.21.8"
@@ -23,6 +23,10 @@ dependencies {
 
 loom {
     serverOnlyMinecraftJar()
+    mixin {
+        useLegacyMixinAp.set(true) // this brings the refmap back
+        defaultRefmapName.set("v1_21_8-refmap.json") // this brings the refmap back
+    }
 }
 
 tasks.named<RemapJarTask>("remapJar") {
