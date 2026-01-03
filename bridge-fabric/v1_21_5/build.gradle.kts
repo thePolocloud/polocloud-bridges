@@ -23,8 +23,6 @@ dependencies {
 
 loom {
     serverOnlyMinecraftJar()
-    accessWidenerPath.set(file("src/main/resources/polocloud_bridge_1_21_5.accesswidener"))
-
     mixin {
         useLegacyMixinAp.set(true) // this brings the refmap back
         defaultRefmapName.set("v1_21_5-refmap.json")
