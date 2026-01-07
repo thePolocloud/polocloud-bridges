@@ -35,11 +35,11 @@ tasks.processResources {
 tasks.register<Jar>("mergeFabricVersions") {
     archiveFileName.set("polocloud-${project.name}-$version.jar")
 
-    val remappedJars = subprojects.map { sub ->
+    val remappedJars = subprojects.flatMap { sub ->
         val remapTask = sub.tasks.named("remapJar").get()
         dependsOn(remapTask)
         remapTask.outputs.files
-    }.flatten()
+    }
 
     // we dont need the jsons from the different versions cause this causes conflicts
     from(remappedJars.map { zipTree(it) }) {

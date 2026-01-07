@@ -4,9 +4,9 @@ plugins {
     id("fabric-loom") version "1.14-SNAPSHOT"
 }
 
-val minecraftVersion = "1.21.5"
-val fabricMappingsVersion = "1.21.5+build.1"
-val fabricApiVersion = "0.128.2+1.21.5"
+val minecraftVersion = "1.21.11"
+val fabricMappingsVersion = "1.21.11+build.3"
+val fabricApiVersion = "0.140.2+1.21.11"
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
@@ -25,7 +25,7 @@ loom {
     serverOnlyMinecraftJar()
     mixin {
         useLegacyMixinAp.set(true) // this brings the refmap back
-        defaultRefmapName.set("v1_21_5-refmap.json")
+        defaultRefmapName.set("v1_21_11-refmap.json")
     }
 }
 

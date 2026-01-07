@@ -10,5 +10,8 @@ import java.net.SocketAddress;
 public interface ClientConnectionAccessor {
 
     @Accessor("address")
+    SocketAddress getAddress();
+
+    @Accessor("address")
     void setAddress(SocketAddress address);
 }

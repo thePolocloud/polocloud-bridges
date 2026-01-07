@@ -1,4 +1,4 @@
-package dev.httpmarco.polocloud.bridges.fabric.v1_21_8.mixin;
+package dev.httpmarco.polocloud.bridges.fabric.v1_21_10.mixin;
 
 import net.minecraft.network.ClientConnection;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,9 +8,6 @@ import java.net.SocketAddress;
 
 @Mixin(ClientConnection.class)
 public interface ClientConnectionAccessor {
-
-    @Accessor("address")
-    SocketAddress getAddress();
 
     @Accessor("address")
     void setAddress(SocketAddress address);

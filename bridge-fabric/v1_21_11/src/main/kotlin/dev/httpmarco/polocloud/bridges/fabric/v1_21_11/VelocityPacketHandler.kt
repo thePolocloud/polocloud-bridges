@@ -1,8 +1,8 @@
-package dev.httpmarco.polocloud.bridges.fabric.v1_21_5
+package dev.httpmarco.polocloud.bridges.fabric.v1_21_11
 
-import dev.httpmarco.polocloud.bridges.fabric.v1_21_5.FabricBridge.logger
-import dev.httpmarco.polocloud.bridges.fabric.v1_21_5.mixin.ClientConnectionAccessor
-import dev.httpmarco.polocloud.bridges.fabric.v1_21_5.mixin.ServerLoginNetworkHandlerAccessor
+import dev.httpmarco.polocloud.bridges.fabric.v1_21_11.FabricBridge.logger
+import dev.httpmarco.polocloud.bridges.fabric.v1_21_11.mixin.ClientConnectionAccessor
+import dev.httpmarco.polocloud.bridges.fabric.v1_21_11.mixin.ServerLoginNetworkHandlerAccessor
 import net.fabricmc.fabric.api.networking.v1.PacketSender
 import net.fabricmc.fabric.api.networking.v1.ServerLoginNetworking
 import net.minecraft.network.PacketByteBuf
@@ -68,7 +68,7 @@ class VelocityPacketHandler(val secret: String) {
 
     private fun updateConnectionAddress(handler: ServerLoginNetworkHandler, buf: PacketByteBuf) {
         val connection = (handler as ServerLoginNetworkHandlerAccessor).connection
-        val port = (connection.getAddress() as InetSocketAddress).port
+        val port = (connection.address as InetSocketAddress).port
         val address = VelocityProtocol.readInetAddress(buf)
         (connection as ClientConnectionAccessor).setAddress(InetSocketAddress(address, port))
     }
