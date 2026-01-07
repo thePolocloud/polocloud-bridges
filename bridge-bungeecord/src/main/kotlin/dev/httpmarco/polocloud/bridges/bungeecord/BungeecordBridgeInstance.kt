@@ -1,7 +1,6 @@
 package dev.httpmarco.polocloud.bridges.bungeecord
 
 import dev.httpmarco.polocloud.bridge.api.BridgeActorSupportInstance
-import dev.httpmarco.polocloud.bridge.api.BridgeInstance
 import dev.httpmarco.polocloud.sdk.java.Polocloud
 import dev.httpmarco.polocloud.shared.events.definitions.PlayerJoinEvent
 import dev.httpmarco.polocloud.shared.events.definitions.PlayerLeaveEvent
