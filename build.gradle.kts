@@ -9,7 +9,7 @@ plugins {
 
 allprojects {
     group = "dev.httpmarco.polocloud"
-    version = "3.0.0-pre.7-SNAPSHOT"
+    version = "3.0.0-pre.8-SNAPSHOT"
 
     repositories {
         mavenCentral()
@@ -33,7 +33,7 @@ subprojects {
     apply(plugin = "maven-publish")
 
     dependencies {
-        api("dev.httpmarco.polocloud:sdk-java:3.0.0-pre.7-SNAPSHOT")
+        api("dev.httpmarco.polocloud:sdk-java:$version")
     }
 
     kotlin {
