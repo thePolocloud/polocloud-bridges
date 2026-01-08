@@ -30,13 +30,16 @@ jobs:
       - name: Build bridge-api jar
         run: ./gradlew :bridge-api:jar
 
+      - name: Build Fabric version JARs
+        run: ./gradlew :bridge-fabric:v1_21_10:remapJar :bridge-fabric:v1_21_11:remapJar :bridge-fabric:v1_21_5:remapJar :bridge-fabric:v1_21_8:remapJar :bridge-fabric:v1_21_9:remapJar
+
       - name: Merge Fabric versions
         run: ./gradlew :bridge-fabric:mergeFabricVersions
 
       - name: Build shadowJar (excluding Fabric)
         run: ./gradlew :bridge-bungeecord:shadowJar :bridge-velocity:shadowJar :bridge-waterdog:shadowJar
 
-      - name: Publish shared to Sonatype
+      - name: Publish to Sonatype
         env:
           ossrhUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           ossrhPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
