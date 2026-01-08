@@ -24,11 +24,17 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Clean build directories
+        run: ./gradlew clean
+
       - name: Build bridge-api jar
         run: ./gradlew :bridge-api:jar
 
-      - name: Build Launcher with Gradle
-        run: ./gradlew clean shadowJar
+      - name: Merge Fabric versions
+        run: ./gradlew :bridge-fabric:mergeFabricVersions
+
+      - name: Build shadowJar (excluding Fabric)
+        run: ./gradlew :bridge-bungeecord:shadowJar :bridge-velocity:shadowJar :bridge-waterdog:shadowJar
 
       - name: Publish shared to Sonatype
         env:
