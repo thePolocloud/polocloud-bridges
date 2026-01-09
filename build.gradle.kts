@@ -44,42 +44,44 @@ subprojects {
         isZip64 = true
     }
 
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                if (plugins.hasPlugin("com.gradleup.shadow")) {
-                    artifact(tasks.named("shadowJar")) {
-                        classifier = null
-                    }
-                } else {
-                    from(components["java"])
-                }
-
-                pom {
-                    description.set("PoloCloud gRPC API with bundled dependencies")
-                    url.set("https://github.com/thePolocloud/polocloud")
-
-                    licenses {
-                        license {
-                            name.set("Apache License 2.0")
-                            url.set("https://www.apache.org/licenses/LICENSE-2.0")
+    if (name != "bridge-fabric") {
+            publishing {
+                publications {
+                    create<MavenPublication>("maven") {
+                        if (plugins.hasPlugin("com.gradleup.shadow")) {
+                            artifact(tasks.named("shadowJar")) {
+                                classifier = null
+                            }
+                        } else {
+                            from(components["java"])
                         }
-                    }
-                    developers {
-                        developer {
-                            name.set("Mirco Lindenau")
-                            email.set("mirco.lindenau@gmx.de")
+
+                        pom {
+                            description.set("PoloCloud gRPC API with bundled dependencies")
+                            url.set("https://github.com/thePolocloud/polocloud")
+
+                            licenses {
+                                license {
+                                    name.set("Apache License 2.0")
+                                    url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                                }
+                            }
+                            developers {
+                                developer {
+                                    name.set("Mirco Lindenau")
+                                    email.set("mirco.lindenau@gmx.de")
+                                }
+                            }
+                            scm {
+                                url.set("https://github.com/thePolocloud/polocloud")
+                                connection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
+                                developerConnection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
+                            }
                         }
-                    }
-                    scm {
-                        url.set("https://github.com/thePolocloud/polocloud")
-                        connection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
-                        developerConnection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
                     }
                 }
             }
         }
-    }
 }
 
 nexusPublishing {
