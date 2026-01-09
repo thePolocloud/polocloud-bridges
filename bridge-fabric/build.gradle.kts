@@ -65,3 +65,39 @@ tasks.register<Jar>("mergeFabricVersions") {
     // remove signatures
     exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.EC", "META-INF/*.RSA")
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
+            artifact(tasks.getByName("mergeFabricVersions").outputs.files.singleFile) {
+                classifier = null
+            }
+
+            pom {
+                description.set("PoloCloud Fabric Bridge")
+                url.set("https://github.com/thePolocloud/polocloud")
+                licenses {
+                    license {
+                        name.set("Apache License 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                    }
+                }
+                developers {
+                    developer {
+                        name.set("Mirco Lindenau")
+                        email.set("mirco.lindenau@gmx.de")
+                    }
+                }
+                scm {
+                    url.set("https://github.com/thePolocloud/polocloud")
+                    connection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
+                    developerConnection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
+                }
+            }
+        }
+    }
+}
