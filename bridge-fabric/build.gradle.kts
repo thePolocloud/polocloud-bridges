@@ -65,3 +65,42 @@ tasks.register<Jar>("mergeFabricVersions") {
     // remove signatures
     exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.EC", "META-INF/*.RSA")
 }
+
+tasks.named<Jar>("jar") {
+    enabled = false
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            artifact(tasks.named("mergeFabricVersions")) {
+                classifier = null
+            }
+
+            pom {
+                description.set("PoloCloud gRPC API with bundled dependencies")
+                url.set("https://github.com/thePolocloud/polocloud")
+
+                licenses {
+                    license {
+                        name.set("Apache License 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                    }
+                }
+                developers {
+                    developer {
+                        name.set("Mirco Lindenau")
+                        email.set("mirco.lindenau@gmx.de")
+                    }
+                }
+                scm {
+                    url.set("https://github.com/thePolocloud/polocloud")
+                    connection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
+                    developerConnection.set("scm:git:https://github.com/thePolocloud/polocloud.git")
+                }
+            }
+        }
+    }
+}
