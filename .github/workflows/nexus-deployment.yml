@@ -33,8 +33,18 @@ jobs:
       - name: Build shadowJar (excluding Fabric)
         run: ./gradlew :bridge-bungeecord:shadowJar :bridge-velocity:shadowJar :bridge-waterdog:shadowJar
 
+      - name: Show Fabric jars before build
+        run: |
+          echo "Before build:"
+          ls -R bridge-fabric/build || true
+
       - name: Build Fabric version JARs
-        run: ./gradlew :bridge-fabric:v1_21_10:remapJar :bridge-fabric:v1_21_11:remapJar :bridge-fabric:v1_21_5:remapJar :bridge-fabric:v1_21_8:remapJar :bridge-fabric:v1_21_9:remapJar :bridge-fabric:mergeFabricVersions
+        run: ./gradlew :bridge-fabric:v1_21_10:remapJar :bridge-fabric:v1_21_11:remapJar :bridge-fabric:v1_21_5:remapJar :bridge-fabric:v1_21_8:remapJar :bridge-fabric:v1_21_9:remapJar :bridge-fabric:mergeFabricVersions -x publish
+
+      - name: Show Fabric jars after build
+        run: |
+          echo "After build:"
+          ls -R bridge-fabric/build/libs
 
       - name: Publish to Sonatype
         env:
