@@ -33,7 +33,7 @@ tasks.processResources {
 }
 
 tasks.register<Jar>("mergeFabricVersions") {
-    archiveFileName.set("polocloud-${project.name}-$version.jar")
+    archiveFileName.set("${project.name}-$version.jar")
 
     val remappedJars = subprojects.flatMap { sub ->
         val remapTask = sub.tasks.named("remapJar").get()
