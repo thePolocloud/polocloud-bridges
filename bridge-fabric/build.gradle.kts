@@ -65,7 +65,3 @@ tasks.register<Jar>("mergeFabricVersions") {
     // remove signatures
     exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.EC", "META-INF/*.RSA")
 }
-
-tasks.named<Jar>("jar") {
-    enabled = false
-}

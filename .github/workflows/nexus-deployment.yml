@@ -33,10 +33,10 @@ jobs:
       - name: Build shadowJar (excluding Fabric)
         run: ./gradlew :bridge-bungeecord:shadowJar :bridge-velocity:shadowJar :bridge-waterdog:shadowJar
 
-      - name: Show Fabric jars before build
+      - name: Show all build jars before build
         run: |
           echo "Before build:"
-          ls -R bridge-fabric/build || true
+          find . -type f -name "*.jar" || true
 
       - name: Build Fabric version JARs
         run: ./gradlew :bridge-fabric:v1_21_10:remapJar :bridge-fabric:v1_21_11:remapJar :bridge-fabric:v1_21_5:remapJar :bridge-fabric:v1_21_8:remapJar :bridge-fabric:v1_21_9:remapJar :bridge-fabric:mergeFabricVersions -x publish
