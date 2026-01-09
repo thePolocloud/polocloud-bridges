@@ -47,12 +47,22 @@ subprojects {
     publishing {
         publications {
             create<MavenPublication>("maven") {
-                if (plugins.hasPlugin("com.gradleup.shadow")) {
-                    artifact(tasks.named("shadowJar")) {
-                        classifier = null
+                when {
+                    name == "bridge-fabric" -> {
+                        artifact(tasks.named("mergeFabricVersions")) {
+                            classifier = null
+                        }
                     }
-                } else {
-                    from(components["java"])
+
+                    plugins.hasPlugin("com.gradleup.shadow") -> {
+                        artifact(tasks.named("shadowJar")) {
+                            classifier = null
+                        }
+                    }
+
+                    else -> {
+                        from(components["java"])
+                    }
                 }
 
                 pom {
