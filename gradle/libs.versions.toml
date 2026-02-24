@@ -8,7 +8,7 @@ fabric-language-kotlin = "1.13.4+kotlin.2.2.0"
 nukkit = "1.0-SNAPSHOT"
 
 # bStats
-bstats = "3.1.0"
+bstats = "3.2.0"
 
 gson = "2.13.2"
 
